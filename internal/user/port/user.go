@@ -6,8 +6,9 @@ import (
 )
 
 type Repo interface {
-	Create(ctx context.Context, record domain.User) (domain.UserID, error)
-	Update(ctx context.Context, id domain.UserID, newRecord domain.User) error
-	Read(ctx context.Context, page, limit uint, id domain.UserID) error
-	Delete(ctx context.Context, id domain.UserID) error
+	CreateUser(ctx context.Context, record domain.User) (domain.UserID, error)
+	UpdateUser(ctx context.Context, userID domain.UserID, newRecord domain.User) error
+	ReadUser(ctx context.Context, userID domain.UserID) error
+	FilterUser(ctx context.Context, filter *domain.FilterUser) ([]domain.User, error)
+	DeleteUser(ctx context.Context, userID domain.UserID) error
 }

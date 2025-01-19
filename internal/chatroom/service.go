@@ -41,7 +41,7 @@ func (s *service) UpdateChatroom(ctx context.Context, id chatroomDomain.Chatroom
 	return err
 }
 func (s *service) GetAllChatrooms(ctx context.Context) ([]domain.Chatroom, error) {
-	chatrooms, err := s.repo.FilterChatroom(ctx, &chatroomDomain.ChatroomFilter{})
+	chatrooms, err := s.repo.FilterChatroom(ctx, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get all chatrooms: %w", err)
 	}
