@@ -2,8 +2,8 @@ package domain
 
 import (
 	"errors"
-	messageDomain "nexu-chat/internal/message/domain"
 	userDomain "nexu-chat/internal/user/domain"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -14,15 +14,23 @@ var (
 	ErrInvalidOwner        = errors.New("invalid chatroom owner")
 	ErrInvalidPageSize     = errors.New("invalid page size")
 	ErrInvalidPage         = errors.New("invalid page number")
+	ErrEmptyContent        = errors.New("message content cannot be empty")
+	ErrInvalidSenderID     = errors.New("invalid sender ID")
 )
 
-type ChatroomID = uuid.UUID
+type (
+	ChatroomID = uuid.UUID
+	MessageID  = uuid.UUID
+)
+
 type Chatroom struct {
 	ID       ChatroomID
 	Name     string
-	Messages []messageDomain.MessageID
+	Messages []MessageID
 	Users    []userDomain.UserID
 	Owner    userDomain.UserID
+	CreateAt time.Time
+	UpdateAt time.Time
 }
 
 type ChatroomFilter struct {
