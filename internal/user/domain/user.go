@@ -2,6 +2,7 @@ package domain
 
 import (
 	"errors"
+	"time"
 
 	"github.com/google/uuid"
 )
@@ -12,11 +13,15 @@ type UserID = uuid.UUID
 type User struct {
 	ID        UserID
 	Username  string
+	IP        string
 	Connected bool
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 type FilterUser struct {
 	Username  string
+	IP        string
 	Connected bool
 }
 

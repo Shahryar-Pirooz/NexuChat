@@ -2,7 +2,6 @@ package domain
 
 import (
 	"errors"
-	userDomain "nexu-chat/internal/user/domain"
 	"time"
 
 	"github.com/google/uuid"
@@ -26,16 +25,12 @@ type (
 type Chatroom struct {
 	ID       ChatroomID
 	Name     string
-	Messages []MessageID
-	Users    []userDomain.UserID
-	Owner    userDomain.UserID
 	CreateAt time.Time
 	UpdateAt time.Time
 }
 
 type ChatroomFilter struct {
 	Name     string
-	OwnerID  userDomain.UserID
 	Page     uint
 	PageSize uint
 }
@@ -46,9 +41,6 @@ func (c *Chatroom) Validate() error {
 	}
 	if len(c.Name) > 100 {
 		return ErrChatroomNameTooLong
-	}
-	if c.Owner == uuid.Nil {
-		return ErrInvalidOwner
 	}
 	return nil
 }

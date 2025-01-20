@@ -8,20 +8,21 @@ import (
 )
 
 type Message struct {
-	ID       MessageID
-	SenderID userDomain.UserID
-	Content  string
-	CreateAt time.Time
-	UpdateAt time.Time
+	ID         MessageID
+	SenderID   userDomain.UserID
+	ChatroomID ChatroomID
+	Content    string
+	CreateAt   time.Time
+	UpdateAt   time.Time
 }
 
 type MessageFilter struct {
-	SenderID userDomain.UserID
-	FromDate time.Time
-	ToDate   time.Time
-	Content  string
+	SenderID   userDomain.UserID
+	ChatroomID ChatroomID
+	FromDate   time.Time
+	ToDate     time.Time
+	Content    string
 }
-
 
 func (m *Message) Validate() error {
 	if m.Content == "" {
