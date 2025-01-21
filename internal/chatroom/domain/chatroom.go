@@ -35,6 +35,14 @@ type ChatroomFilter struct {
 	PageSize uint
 }
 
+func ParsUUID(id string) (uuid.UUID, error) {
+	parsedID, err := uuid.Parse(id)
+	if err != nil {
+		return uuid.Nil, err
+	}
+	return parsedID, nil
+}
+
 func (c *Chatroom) Validate() error {
 	if c.Name == "" {
 		return ErrEmptyChatroomName

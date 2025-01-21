@@ -21,8 +21,12 @@ func UserDomain2Storage(src domain.User) *types.User {
 }
 
 func UserStorage2Domain(src types.User) *domain.User {
+	id, err := uuid.Parse(src.ID)
+	if err != nil {
+		return nil
+	}
 	return &domain.User{
-		ID:        uuid.MustParse(src.ID),
+		ID:        id,
 		Username:  src.Username,
 		IP:        src.IP,
 		Connected: src.Connected,
