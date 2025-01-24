@@ -12,7 +12,7 @@ func NewNatsService(ip string) *natsOpt {
 	}
 }
 
-func (no *natsOpt) Connect() *nats.Conn {
+func (no *natsOpt) NewNatsConnect() *nats.Conn {
 	nc, err := nats.Connect(no.ip)
 	if err != nil {
 		panic(err)

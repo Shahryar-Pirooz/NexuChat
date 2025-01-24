@@ -59,6 +59,24 @@ func (s *service) GetAllActiveUser(ctx context.Context) ([]userDomain.User, erro
 	}
 	return users, nil
 }
+func (s *service) AuthenticateUser(ctx context.Context, username, password string) (*userDomain.User, error) {
+	filter := &userDomain.FilterUser{
+		Username: username,
+	}
+	users, err := s.repo.FilterUser(ctx, filter)
+	user := &users[0]
+	if err != nil {
+		return nil, fmt.Errorf("failed to find user by username: %w", err)
+	}
+	if user == nil {
+		return nil, nil
+	}
+	if !user.ComparePassword(password) {
+		return nil, nil
+	}
+	return user, nil
+}
+
 func (s *service) DeleteUser(ctx context.Context, id userDomain.UserID) error {
 	if err := uuid.Validate(id.String()); err != nil {
 		return fmt.Errorf("failed to validate user id: %w", err)

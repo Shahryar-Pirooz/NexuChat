@@ -115,3 +115,11 @@ func NewApp(cnfg config.Config) (App, error) {
 	}
 	return a, nil
 }
+
+func MustNewApp(cnfg config.Config) App {
+	a, err := NewApp(cnfg)
+	if err != nil {
+		panic(err)
+	}
+	return a
+}

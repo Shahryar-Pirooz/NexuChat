@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"nexu-chat/internal/user/domain"
 	userDomain "nexu-chat/internal/user/domain"
 	"time"
 
@@ -22,6 +23,16 @@ type MessageFilter struct {
 	FromDate   time.Time
 	ToDate     time.Time
 	Content    string
+}
+
+type MessageBroker interface {
+	PublishMessage(msg Message) error
+	SubscribeMessages(handler func(Message)) error
+	PublishUserJoined(user domain.User) error
+	SubscribeUserJoined(handler func(domain.User)) error
+	PublishUserLeft(user domain.User) error
+	SubscribeUserLeft(handler func(domain.User)) error
+	Close()
 }
 
 func (m *Message) Validate() error {
