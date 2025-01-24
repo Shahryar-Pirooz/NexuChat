@@ -2,9 +2,14 @@ database:
   host: localhost
   port: "5432"
   user: postgres
+  db-name: db_name
   password: your_password
-  ssl: disable
+  ssl-mode: disable
 
 server:
   host: localhost
-  port: "8080"
+  port: 8080
+
+nats:
+  host: localhost
+  port: 4222

@@ -8,16 +8,16 @@ import (
 )
 
 type DBOptions struct {
-	host     string
+	Host     string
 	port     string
-	user     string
-	password string
-	dbname   string
-	sslmode  string
+	User     string
+	Password string
+	DBName   string
+	SSLMode  string
 }
 
 func (options *DBOptions) PostgresDSN() string {
-	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", options.host, options.port, options.user, options.password, options.dbname, options.sslmode)
+	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s", options.Host, options.port, options.User, options.Password, options.DBName, options.SSLMode)
 }
 
 func NewDB(options *DBOptions) (*gorm.DB, error) {
