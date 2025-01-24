@@ -2,11 +2,25 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"nexu-chat/config"
+	natsserver "nexu-chat/pkg/nats-server"
 	"os"
+
+	"github.com/nats-io/nats.go"
 )
 
-func main() {}
+func main() {
+	fmt.Println("run server")
+	nc := natsserver.NewNatsService(nats.DefaultURL).Connect()
+	defer nc.Close()
+	nc.Subscribe("channel1", func(msg *nats.Msg) {
+		h := msg.Header
+		user := h.Get("user")
+		fmt.Printf("%s\t->\t%s\n", user, msg.Data)
+	})
+	select {}
+}
 
 func loadConfig() config.Config {
 	var configPath string
