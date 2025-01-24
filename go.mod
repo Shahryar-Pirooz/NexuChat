@@ -3,6 +3,8 @@ module nexu-chat
 go 1.23.4
 
 require (
+	github.com/gofiber/fiber/v2 v2.46.0
+	github.com/gofiber/websocket/v2 v2.2.1
 	github.com/google/uuid v1.6.0
 	github.com/nats-io/nats.go v1.38.0
 	github.com/spf13/viper v1.19.0
@@ -15,8 +17,6 @@ require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/fasthttp/websocket v1.5.3 // indirect
 	github.com/fsnotify/fsnotify v1.8.0 // indirect
-	github.com/gofiber/fiber/v2 v2.46.0 // indirect
-	github.com/gofiber/websocket/v2 v2.2.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
