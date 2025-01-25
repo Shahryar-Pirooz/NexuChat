@@ -1,8 +1,8 @@
 package http
 
 import (
-	"nexu-chat/api/http/handlers"
-	ws "nexu-chat/api/ws"
+	httpHandler "nexu-chat/api/http/handler"
+	wsHandler "nexu-chat/api/ws/handler"
 	chatroomPort "nexu-chat/internal/chatroom/port"
 	userPort "nexu-chat/internal/user/port"
 
@@ -11,14 +11,14 @@ import (
 )
 
 func NewRouter(
-	wsHandler *ws.Handler,
+	wsHandler *wsHandler.Handler,
 	userService userPort.Service,
 	chatroomService chatroomPort.Service,
 ) *fiber.App {
 	app := fiber.New()
 
 	// Create handlers
-	userHandler := handlers.NewUserHandler(userService)
+	userHandler := httpHandler.NewUserHandler(userService)
 	// chatroomHandler := handler.NewChatroomHandler(chatroomService)
 
 	// API routes

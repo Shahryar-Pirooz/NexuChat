@@ -68,9 +68,6 @@ func (s *service) AuthenticateUser(ctx context.Context, username, password strin
 	if err != nil {
 		return nil, fmt.Errorf("failed to find user by username: %w", err)
 	}
-	if user == nil {
-		return nil, nil
-	}
 	if !user.ComparePassword(password) {
 		return nil, nil
 	}
