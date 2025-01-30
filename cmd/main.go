@@ -2,13 +2,11 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"nexu-chat/config"
 	"os"
 )
 
 func main() {
-	fmt.Println(loadConfig())
 }
 
 func loadConfig() config.Config {
